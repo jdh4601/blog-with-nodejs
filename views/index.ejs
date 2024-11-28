@@ -1,0 +1,47 @@
+<div class="author">
+	<h2 class="author__heading">
+		<span class="highlight-yellow" id="element"></span>
+	</h2>
+	
+	<script type="module">
+		new TypeIt("#element", {
+			speed: 100,
+			loop: false,
+			waitUntilVisible: true,
+		})
+		.type("< Hi, ")
+		.exec(async () => {
+			await new Promise((resolve, reject) => {
+				setTimeout(() => {
+					return resolve();
+				}, 1000);
+			});
+		})
+		.type("I am Donghyun />")
+		.go();
+	</script>
+	
+	<section class="author__body">
+		<p style="text-align: center">I'm a software engineer who believes great code starts with great questions.
+		This blog is for writing about what I'm learning, the questions that drive me, and the insights that surprise me.</p>
+	</section>
+</div>
+
+<section class="social-link">
+	<h3>
+		Connect With Me
+	</h3>
+	<div class="links">
+		<a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=jdh9490@gmail.com">Gmail</a>
+		<a href="https://github.com/jdh4601">GitHub</a>
+		<a href="https://linkedin.com/in/donghyun10">LinkedIn</a>
+		<a href="https://velog.io/@jdh4601/posts">Tech-blog</a>
+	</div>
+</section>
+
+<section class="news-letter">
+		<h3 class="news-letter__heading">
+			News Letter
+		</h3>
+</section>
+

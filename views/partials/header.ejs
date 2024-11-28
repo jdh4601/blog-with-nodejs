@@ -1,0 +1,16 @@
+<header class="header">
+	<a href="/" class="header__logo">hyunfinity</a>
+	<nav class="header__nav">
+		<ul>
+			<li>
+				<a href="/about" class="<%= isActiveRoute('/about', currentRoute) %>">about</a>
+			</li>
+			<li>
+				<a href="/thoughts" class="<%= isActiveRoute('/thoughts', currentRoute) %>">thoughts</a>
+			</li>
+			<li>
+				<a href="/books" class="<%= isActiveRoute('/books', currentRoute) %>">books</a>
+			</li>
+		</ul>
+	</nav>
+</header>
