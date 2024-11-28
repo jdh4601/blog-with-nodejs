@@ -4,8 +4,8 @@
 I started learning Node Js in the military to build my own portfolio blog website.
 
 ## Information
-Project name: [hyunfinity.com](hyunfinity.com)
-Period: 2024.10 - present
+Project name: [hyunfinity.com](hyunfinity.com) <br/>
+Period: 2024.10 - present <br/>
 Stack: Node.js, css, ejs, express, MongoDB, AWS
 
 ## Features
