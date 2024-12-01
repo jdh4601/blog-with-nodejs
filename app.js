@@ -9,8 +9,8 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
 const flash = require('express-flash')
-
-
+const mailchimp = require('@mailchimp/mailchimp_marketing');
+const path = require ('path');
 const connectDB = require('./server/config/db');
 const { isActiveRoute } = require('./server/helpers/routeHelpers.js');
 
@@ -54,6 +54,8 @@ app.use((req, res, next) => {
 
 app.use('/', MainRouter);
 app.use('/', AdminRouter);
+
+app.use(express.static(path.join(__dirname + '../public')));
 
 app.listen(PORT, () => {
 	console.log(`App listening on port ${PORT}`);

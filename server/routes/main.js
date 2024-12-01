@@ -84,12 +84,17 @@ router.get('/thoughts', async (req, res) => {
 	}
 });
 
-// GET /books
-router.get('/books', (req, res) => {
-	res.render('books', {
-		currentRoute: '/books',
+// GET /projects
+router.get('/projects', (req, res) => {
+	res.render('projects', {
+		currentRoute: '/projects',
 		isActiveRoute: helpers.isActiveRoute
 	});
+});
+
+// GET /success
+router.post('/success', (req, res) => {
+	res.render('success');
 });
 
 module.exports = router;

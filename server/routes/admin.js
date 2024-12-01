@@ -120,7 +120,7 @@ router.get('/add-post', authMiddleware, async (req, res) => {
 router.post('/add-post', authMiddleware, async (req, res) => {
 	try {
 		
-		const { title, body } = req.body; // 구조 분해 할당
+		const { title, body } = req.body;
 		
 		// Varify input text
 		if (!title || !body) {
