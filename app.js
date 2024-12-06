@@ -13,6 +13,7 @@ const mailchimp = require('@mailchimp/mailchimp_marketing');
 const path = require ('path');
 const connectDB = require('./server/config/db');
 const { isActiveRoute } = require('./server/helpers/routeHelpers.js');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,6 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // creating session cookie
 app.use(session({

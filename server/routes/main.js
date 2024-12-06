@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 const helpers = require('../helpers/routeHelpers');
+const resumeData = require('../config/resume-data.js');
 
 // GET /home
 router.get('/', async (req, res) => {
@@ -49,10 +50,7 @@ router.get('/post/:id', async (req, res) => {
 
 // GET /about
 router.get('/about', (req, res) => {
-	res.render('about', {
-		currentRoute: '/about',
-		isActiveRoute: helpers.isActiveRoute
-	});
+	res.render('about', resumeData);
 });
 
 // GET /thoughts
@@ -73,7 +71,6 @@ router.get('/thoughts', async (req, res) => {
 		
 		res.render('thoughts', {
 			currentRoute: '/thoughts', // 현재 페이지 식별 -> nav bar에 표시
-			isActiveRoute: helpers.isActiveRoute,			
 			current: page,
 			nextPage: hasNextPage,
 			data
@@ -87,8 +84,7 @@ router.get('/thoughts', async (req, res) => {
 // GET /projects
 router.get('/projects', (req, res) => {
 	res.render('projects', {
-		currentRoute: '/projects',
-		isActiveRoute: helpers.isActiveRoute
+		currentRoute: '/projects'
 	});
 });
 

@@ -10,6 +10,7 @@ html {
 	--gray-light: #e4e4e4;
 	--red: #b30000;
 	--font-size-base: 1rem;
+	--font-size-sm: clamp(0.9rem, 0.45vw + 0.8rem, 1.2rem);
 	--font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
 	--font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
 	--font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
@@ -391,4 +392,23 @@ img {
 
 .close-btn:hover {
 		background-color: #45a049;
+}
+
+/* about */
+
+.gray {
+	color: var(--gray);
+}
+
+.date {
+	float: right;
+	color: var(--gray);
+}
+
+.details {
+	font-size: var(--font-size-sm);
+}
+
+.name {
+	font-size: var(--font-size-md);
 }
