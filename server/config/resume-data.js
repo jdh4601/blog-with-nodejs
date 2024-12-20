@@ -24,7 +24,7 @@ const resumeData = {
 						responsibilities: [
 								"Participated in group presentation competitions, showcasing teamwork and communication skills.",
 								"Conducted research on global issues, including climate-tech, AI, and business, while engaging with experts to gain deeper insights.",
-								"Delivered team presentations on LLM solutions for equitable access to stock market information, with a focus on ESG principles."
+								"Delivered team presentations on LLM solutions for equitable access to stock market information."
 						]
 				},
 				{

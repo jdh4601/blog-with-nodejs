@@ -14,6 +14,7 @@ const path = require ('path');
 const connectDB = require('./server/config/db');
 const { isActiveRoute } = require('./server/helpers/routeHelpers.js');
 const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -36,7 +37,8 @@ app.use(session({
 	resave: true,
 	saveUnitialized: true,
 	store: MongoStore.create({
-		mongoUrl: process.env.MONGODB_URI
+		mongoUrl: process.env.MONGODB_URI,
+		client: mongoose.connection.getClient()
 	})
 }));
 
