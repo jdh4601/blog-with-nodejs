@@ -12,6 +12,7 @@ const path = require('path');
 const connectDB = require('./server/config/db');
 const { isActiveRoute } = require('./server/helpers/routeHelpers.js');
 const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -28,17 +29,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // creating session cookie
-app.use(
-  session({
-    secret: 'secret-key',
-    saveUninitialized: true,
-    resave: true,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
-      collection: 'session',
-    }),
-  })
-);
+app.use(session({
+	secret: 'secret-key',
+	saveUninitialized: true,
+	resave: true,
+	saveUnitialized: true,
+	store: MongoStore.create({
+		mongoUrl: process.env.MONGODB_URI,
+		client: mongoose.connection.getClient()
+	})
+}));
 
 app.use(flash());
 app.use(express.static('public'));
