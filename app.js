@@ -1,16 +1,14 @@
 require('dotenv').config();
-const ejs = require('ejs');
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const MainRouter = require('./server/routes/main');
 const AdminRouter = require('./server/routes/admin');
 const cookieParser = require('cookie-parser');
-const session = require('express-session')
+const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const flash = require('express-flash')
-const mailchimp = require('@mailchimp/mailchimp_marketing');
-const path = require ('path');
+const flash = require('express-flash');
+const path = require('path');
 const connectDB = require('./server/config/db');
 const { isActiveRoute } = require('./server/helpers/routeHelpers.js');
 const bodyParser = require('body-parser');
@@ -53,8 +51,8 @@ app.set('view engine', 'ejs');
 app.locals.isActiveRoute = isActiveRoute;
 
 app.use((req, res, next) => {
-    res.locals.currentRoute = req.path;
-    next();
+  res.locals.currentRoute = req.path;
+  next();
 });
 
 app.use('/', MainRouter);
@@ -63,5 +61,5 @@ app.use('/', AdminRouter);
 app.use(express.static(path.join(__dirname + '../public')));
 
 app.listen(PORT, () => {
-	console.log(`App listening on port ${PORT}`);
+  console.log(`App listening on port ${PORT}`);
 });
