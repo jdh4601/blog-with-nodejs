@@ -89,7 +89,7 @@ router.get('/projects', (req, res) => {
 });
 
 // GET /success
-router.post('/success', (req, res) => {
+router.get('/success', (req, res) => {
 	res.render('success');
 });
 

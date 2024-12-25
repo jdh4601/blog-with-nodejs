@@ -1,3 +1,8 @@
+console.log('start mongodb connection...');
+require('dotenv').config();
+console.log('environment loaded: ', process.env.NODE_ENV);
+console.log('MongoDB URI: ', process.env.MONGODB_URI);
+
 const mongoose = require('mongoose');
 
 const connectionDB = async () => {
