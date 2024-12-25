@@ -10,26 +10,34 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "## Purpose I started learning Node Js in the military to build my own portfolio blog website.",
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.7",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "express-ejs-layouts": "^2.5.1",
     "express-flash": "^0.0.2",
     "express-session": "^1.18.1",
     "flash": "^1.1.0",
     "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
-    "mongoose": "^8.8.1",
+    "mongoose": "^8.9.1",
     "typeit": "^8.8.7"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
-  }
+    "nodemon": "^3.1.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdh4601/blog-with-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jdh4601/blog-with-nodejs/issues"
+  },
+  "homepage": "https://github.com/jdh4601/blog-with-nodejs#readme"
 }
