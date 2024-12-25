@@ -27,20 +27,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // creating session cookie
-app.use(session({
-	secret: 'secret-key',
-	saveUninitialized: true,
-	resave: true,
-	saveUnitialized: true,
-	store: MongoStore.create({
-		mongoUrl: process.env.MONGODB_URI,
-		client: mongoose.connection.getClient()
-	})
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET, // Encryption key
+    saveUninitialized: false, // session saving behavior
+    resave: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+    }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24, // 24 hours
+      httpOnly: true,
+    },
+  })
+);
 
 app.use(flash());
 app.use(express.static('public'));

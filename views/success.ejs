@@ -1,16 +1,22 @@
-<div class="popup-container">
-		<div class="popup-icon">✓</div>
-		<h2 class="popup-title">구독 완료</h2>
-		<p class="popup-message">
-				뉴스레터 구독이 성공적으로 완료되었습니다. 
-				앞으로 최신 소식을 이메일로 받아보실 수 있습니다.
-		</p>
-		<button class="close-btn" onclick="window.close()">닫기</button>
-</div>
-
-<script>
-		// Auto-close the window after 3 seconds
-		setTimeout(() => {
-				window.close();
-		}, 3000);
-</script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Success!</title>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+      }
+      .success-message {
+        text-align: center;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="success-message">
+      <h2>🎉 Success! 🎉</h2>
+      <p>Thank you for subscribing!<br> Get ready for valuable insights and updates straight to your inbox.</p>
+    </div>
+  </body>
+</html>
