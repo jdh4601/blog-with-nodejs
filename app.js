@@ -12,7 +12,7 @@ const path = require('path');
 const connectDB = require('./server/config/db');
 const { isActiveRoute } = require('./server/helpers/routeHelpers.js');
 const bodyParser = require('body-parser');
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
