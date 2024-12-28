@@ -42,7 +42,7 @@
       </div>
 
       <div class="project-details">
-        <ul class="job-details">
+        <ul>
           <% project.description.forEach(function(desc) { %>
           <li><%= desc %></li>
           <% }); %>
@@ -62,7 +62,7 @@
         <strong><%= edu.institution %></strong>
         <span class="date"><%= edu.startDate %> - <%= edu.endDate %></span
         ><br />
-        <span class="details"><%= edu.degree %></span>
+        <span><%= edu.degree %></span>
       </div>
       <div class="education-details">
         <% if (edu.gpa) { %>
@@ -80,7 +80,7 @@
       <div class="certification-title">
         <strong><%= cert.name %></strong>
         <span class="date"><%= cert.dateEarned %></span><br />
-        <span class="details"><%= cert.organization %></span>
+        <span><%= cert.organization %></span>
       </div>
       <% if (cert.link) { %>
       <a href="<%= cert.link %>" target="_blank">(Link)</a>
