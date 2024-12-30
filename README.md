@@ -17,8 +17,7 @@ It is for back-end development, authentication, and database about writing blogs
 6. Newsletter subscription api
 
 ## Image
-![image1](https://user-images.githubusercontent.com/.../your-uploaded-image.png)
-
+![image1](https://github.com/user-attachments/assets/fc7d6cc1-b8bc-44a0-a7f7-6a20714a387c")
 
 ## Getting Started
 1. Prerequisites
@@ -51,6 +50,7 @@ npm start
 ```
 
 ## Project structure
+``` plaintext
 my-node-blog/
 ├── public/             # Static files (CSS, images, icons, client-side JS)
 ├── views/              # EJS templates
@@ -63,10 +63,11 @@ my-node-blog/
 ├── app.js              # Express app setup
 ├── package.json        
 └── README.md
+```
 
 ## Contact
-Author: Donghyun Jeong
-Website: hyunfinity.com
-Email: jdh9490@gmail.com
+Author: Donghyun Jeong <br/>
+Website: hyunfinity.com <br/>
+Email: jdh9490@gmail.com <br/>
 
 Feel free to reach out if you have questions or feedback!
