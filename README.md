@@ -17,7 +17,8 @@ It is for back-end development, authentication, and database about writing blogs
 6. Newsletter subscription api
 
 ## Image
-![image1](https://github.com/user-attachments/assets/fc7d6cc1-b8bc-44a0-a7f7-6a20714a387c)
+<img src="https://github.com/user-attachments/assets/fc7d6cc1-b8bc-44a0-a7f7-6a20714a387c" alt="image1" width="200" />
+
 
 ## Getting Started
 1. Prerequisites
