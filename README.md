@@ -12,13 +12,13 @@ It is for back-end development, authentication, and database about writing blogs
 ## Features
 1. Create, read, update, and delete blog posts (CRUD)
 2. Admin dashboard
-4. Athentication
-5. session cookie
-6. Newsletter subscription api
+3. Log in with session cookies
+4. Newsletter subscription api
 
 ## Image
-<img src="https://github.com/user-attachments/assets/fc7d6cc1-b8bc-44a0-a7f7-6a20714a387c" alt="image1" width="200" />
-
+<img src="https://github.com/user-attachments/assets/e34fb3e7-f5ea-4b7a-931c-d7a782f8a9f3" alt="main" width="300" />
+<img src="https://github.com/user-attachments/assets/36dc3376-1ac4-4973-99cd-97649cdd1c6b" alt="login" width="300" />
+<img src="https://github.com/user-attachments/assets/3a75d4cc-a1f6-4185-9db2-a1d5a44d3dc3" alt="dashboard" width="300" />
 
 ## Getting Started
 1. Prerequisites
