@@ -1,3 +1,4 @@
 node_modules/
 .env
 hyunfinity-blog.pem
+.clineignore
