@@ -1,0 +1,916 @@
+<div class="admin-title">
+  <h2>Edit About Information</h2>
+  <a href="/dashboard" class="button">Back to Dashboard</a>
+</div>
+
+<div class="admin-content">
+  <form action="/update-about?_method=PUT" method="POST" id="editAboutForm">
+    <!-- Tabs Navigation -->
+    <div class="tabs">
+      <button type="button" class="tab-btn active" data-tab="personal">
+        Personal Info
+      </button>
+      <button type="button" class="tab-btn" data-tab="experience">
+        Experience
+      </button>
+      <button type="button" class="tab-btn" data-tab="projects">
+        Projects
+      </button>
+      <button type="button" class="tab-btn" data-tab="education">
+        Education
+      </button>
+      <button type="button" class="tab-btn" data-tab="certifications">
+        Certifications
+      </button>
+    </div>
+
+    <!-- Personal Info Tab -->
+    <div class="tab-content active" id="personal">
+      <h3>Personal Information</h3>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value="<%= name %>" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value="<%= email %>"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          value="<%= phone %>"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          value="<%= location %>"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="interests">Interests</label>
+        <input
+          type="text"
+          id="interests"
+          name="Interests"
+          value="<%= Interests %>"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Experience Tab -->
+    <div class="tab-content" id="experience">
+      <h3>Experience</h3>
+      <div id="experienceContainer">
+        <% [...experiences].reverse().forEach((exp, index) => { %>
+        <div class="experience-entry">
+          <h4>Experience #<%= index + 1 %></h4>
+          <div class="form-group">
+            <label for="exp_title_<%= index %>">Title</label>
+            <input
+              type="text"
+              id="exp_title_<%= index %>"
+              name="experiences[<%= index %>][title]"
+              value="<%= exp.title %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="exp_company_<%= index %>">Company</label>
+            <input
+              type="text"
+              id="exp_company_<%= index %>"
+              name="experiences[<%= index %>][company]"
+              value="<%= exp.company %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="exp_startDate_<%= index %>">Start Date</label>
+            <input
+              type="text"
+              id="exp_startDate_<%= index %>"
+              name="experiences[<%= index %>][startDate]"
+              value="<%= exp.startDate %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="exp_endDate_<%= index %>">End Date</label>
+            <input
+              type="text"
+              id="exp_endDate_<%= index %>"
+              name="experiences[<%= index %>][endDate]"
+              value="<%= exp.endDate %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Responsibilities</label>
+            <div
+              class="responsibilities-container"
+              id="responsibilities_<%= index %>"
+            >
+              <% exp.responsibilities.forEach((resp, respIndex) => { %>
+              <div class="responsibility-entry">
+                <input
+                  type="text"
+                  name="experiences[<%= index %>][responsibilities][<%= respIndex %>]"
+                  value="<%= resp %>"
+                  required
+                />
+                <button type="button" class="btn-delete-responsibility">
+                  Remove
+                </button>
+              </div>
+              <% }); %>
+            </div>
+            <button
+              type="button"
+              class="btn-add-responsibility"
+              data-index="<%= index %>"
+            >
+              Add Responsibility
+            </button>
+          </div>
+
+          <button type="button" class="btn-delete btn-delete-experience">
+            Remove Experience
+          </button>
+        </div>
+        <% }); %>
+      </div>
+      <button type="button" id="addExperience" class="button">
+        Add Experience
+      </button>
+    </div>
+
+    <!-- Projects Tab -->
+    <div class="tab-content" id="projects">
+      <h3>Projects</h3>
+      <div id="projectsContainer">
+        <% projects.forEach((project, index) => { %>
+        <div class="project-entry">
+          <h4>Project #<%= index + 1 %></h4>
+          <div class="form-group">
+            <label for="proj_name_<%= index %>">Name</label>
+            <input
+              type="text"
+              id="proj_name_<%= index %>"
+              name="projects[<%= index %>][name]"
+              value="<%= project.name %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="proj_startDate_<%= index %>">Start Date</label>
+            <input
+              type="text"
+              id="proj_startDate_<%= index %>"
+              name="projects[<%= index %>][startDate]"
+              value="<%= project.startDate %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="proj_endDate_<%= index %>">End Date</label>
+            <input
+              type="text"
+              id="proj_endDate_<%= index %>"
+              name="projects[<%= index %>][endDate]"
+              value="<%= project.endDate %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="proj_link_<%= index %>">Link (optional)</label>
+            <input
+              type="text"
+              id="proj_link_<%= index %>"
+              name="projects[<%= index %>][link]"
+              value="<%= project.link || '' %>"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <div class="description-container" id="description_<%= index %>">
+              <% project.description.forEach((desc, descIndex) => { %>
+              <div class="description-entry">
+                <input
+                  type="text"
+                  name="projects[<%= index %>][description][<%= descIndex %>]"
+                  value="<%= desc %>"
+                  required
+                />
+                <button type="button" class="btn-delete-description">
+                  Remove
+                </button>
+              </div>
+              <% }); %>
+            </div>
+            <button
+              type="button"
+              class="btn-add-description"
+              data-index="<%= index %>"
+            >
+              Add Description
+            </button>
+          </div>
+
+          <div class="form-group">
+            <label for="proj_technologies_<%= index %>"
+              >Technologies (comma separated)</label
+            >
+            <input
+              type="text"
+              id="proj_technologies_<%= index %>"
+              name="projects[<%= index %>][technologies]"
+              value="<%= project.technologies.join(', ') %>"
+              required
+            />
+          </div>
+
+          <button type="button" class="btn-delete btn-delete-project">
+            Remove Project
+          </button>
+        </div>
+        <% }); %>
+      </div>
+      <button type="button" id="addProject" class="button">Add Project</button>
+    </div>
+
+    <!-- Education Tab -->
+    <div class="tab-content" id="education">
+      <h3>Education</h3>
+      <div id="educationContainer">
+        <% education.forEach((edu, index) => { %>
+        <div class="education-entry">
+          <h4>Education #<%= index + 1 %></h4>
+          <div class="form-group">
+            <label for="edu_institution_<%= index %>">Institution</label>
+            <input
+              type="text"
+              id="edu_institution_<%= index %>"
+              name="education[<%= index %>][institution]"
+              value="<%= edu.institution %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edu_degree_<%= index %>">Degree</label>
+            <input
+              type="text"
+              id="edu_degree_<%= index %>"
+              name="education[<%= index %>][degree]"
+              value="<%= edu.degree %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edu_startDate_<%= index %>">Start Date</label>
+            <input
+              type="text"
+              id="edu_startDate_<%= index %>"
+              name="education[<%= index %>][startDate]"
+              value="<%= edu.startDate %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edu_endDate_<%= index %>">End Date</label>
+            <input
+              type="text"
+              id="edu_endDate_<%= index %>"
+              name="education[<%= index %>][endDate]"
+              value="<%= edu.endDate %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edu_gpa_<%= index %>">GPA (optional)</label>
+            <input
+              type="text"
+              id="edu_gpa_<%= index %>"
+              name="education[<%= index %>][gpa]"
+              value="<%= edu.gpa || '' %>"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edu_logo_<%= index %>">Logo Path (optional)</label>
+            <input
+              type="text"
+              id="edu_logo_<%= index %>"
+              name="education[<%= index %>][logo]"
+              value="<%= edu.logo || '' %>"
+            />
+          </div>
+
+          <button type="button" class="btn-delete btn-delete-education">
+            Remove Education
+          </button>
+        </div>
+        <% }); %>
+      </div>
+      <button type="button" id="addEducation" class="button">
+        Add Education
+      </button>
+    </div>
+
+    <!-- Certifications Tab -->
+    <div class="tab-content" id="certifications">
+      <h3>Certifications</h3>
+      <div id="certificationsContainer">
+        <% certifications.forEach((cert, index) => { %>
+        <div class="certification-entry">
+          <h4>Certification #<%= index + 1 %></h4>
+          <div class="form-group">
+            <label for="cert_name_<%= index %>">Name</label>
+            <input
+              type="text"
+              id="cert_name_<%= index %>"
+              name="certifications[<%= index %>][name]"
+              value="<%= cert.name %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cert_organization_<%= index %>">Organization</label>
+            <input
+              type="text"
+              id="cert_organization_<%= index %>"
+              name="certifications[<%= index %>][organization]"
+              value="<%= cert.organization %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cert_dateEarned_<%= index %>">Date Earned</label>
+            <input
+              type="text"
+              id="cert_dateEarned_<%= index %>"
+              name="certifications[<%= index %>][dateEarned]"
+              value="<%= cert.dateEarned %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cert_validUntil_<%= index %>"
+              >Valid Until (optional)</label
+            >
+            <input
+              type="text"
+              id="cert_validUntil_<%= index %>"
+              name="certifications[<%= index %>][validUntil]"
+              value="<%= cert.validUntil || '' %>"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cert_link_<%= index %>">Link (optional)</label>
+            <input
+              type="text"
+              id="cert_link_<%= index %>"
+              name="certifications[<%= index %>][link]"
+              value="<%= cert.link || '' %>"
+            />
+          </div>
+
+          <button type="button" class="btn-delete btn-delete-certification">
+            Remove Certification
+          </button>
+        </div>
+        <% }); %>
+      </div>
+      <button type="button" id="addCertification" class="button">
+        Add Certification
+      </button>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="button">Save Changes</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Tab functionality
+  document.addEventListener('DOMContentLoaded', function () {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        // Remove active class from all buttons and contents
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+
+        // Add active class to clicked button and corresponding content
+        this.classList.add('active');
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Experience section
+    const addExperienceBtn = document.getElementById('addExperience');
+    const experienceContainer = document.getElementById('experienceContainer');
+
+    addExperienceBtn.addEventListener('click', function () {
+      const experienceEntries = document.querySelectorAll('.experience-entry');
+      const newIndex = experienceEntries.length;
+
+      const newExperience = document.createElement('div');
+      newExperience.className = 'experience-entry';
+      newExperience.innerHTML = `
+        <h4>Experience #${newIndex + 1}</h4>
+        <div class="form-group">
+          <label for="exp_title_${newIndex}">Title</label>
+          <input type="text" id="exp_title_${newIndex}" name="experiences[${newIndex}][title]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="exp_company_${newIndex}">Company</label>
+          <input type="text" id="exp_company_${newIndex}" name="experiences[${newIndex}][company]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="exp_startDate_${newIndex}">Start Date</label>
+          <input type="text" id="exp_startDate_${newIndex}" name="experiences[${newIndex}][startDate]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="exp_endDate_${newIndex}">End Date</label>
+          <input type="text" id="exp_endDate_${newIndex}" name="experiences[${newIndex}][endDate]" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Responsibilities</label>
+          <div class="responsibilities-container" id="responsibilities_${newIndex}">
+            <div class="responsibility-entry">
+              <input type="text" name="experiences[${newIndex}][responsibilities][0]" required>
+              <button type="button" class="btn-delete-responsibility">Remove</button>
+            </div>
+          </div>
+          <button type="button" class="btn-add-responsibility" data-index="${newIndex}">Add Responsibility</button>
+        </div>
+        
+        <button type="button" class="btn-delete btn-delete-experience">Remove Experience</button>
+      `;
+
+      // Insert at the beginning of the container (top) instead of appending to the end
+      experienceContainer.insertBefore(
+        newExperience,
+        experienceContainer.firstChild
+      );
+      setupResponsibilityListeners();
+      setupExperienceListeners();
+    });
+
+    function setupResponsibilityListeners() {
+      // Add responsibility buttons
+      document.querySelectorAll('.btn-add-responsibility').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const index = this.getAttribute('data-index');
+          const container = document.getElementById(
+            `responsibilities_${index}`
+          );
+          const responsibilityEntries = container.querySelectorAll(
+            '.responsibility-entry'
+          );
+          const newRespIndex = responsibilityEntries.length;
+
+          const newResponsibility = document.createElement('div');
+          newResponsibility.className = 'responsibility-entry';
+          newResponsibility.innerHTML = `
+            <input type="text" name="experiences[${index}][responsibilities][${newRespIndex}]" required>
+            <button type="button" class="btn-delete-responsibility">Remove</button>
+          `;
+
+          container.appendChild(newResponsibility);
+          setupDeleteResponsibilityListeners();
+        });
+      });
+
+      setupDeleteResponsibilityListeners();
+    }
+
+    function setupDeleteResponsibilityListeners() {
+      // Delete responsibility buttons
+      document.querySelectorAll('.btn-delete-responsibility').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const entry = this.parentElement;
+          if (
+            entry.parentElement.querySelectorAll('.responsibility-entry')
+              .length > 1
+          ) {
+            entry.remove();
+            reindexResponsibilities();
+          } else {
+            alert('You must have at least one responsibility');
+          }
+        });
+      });
+    }
+
+    function setupExperienceListeners() {
+      // Delete experience buttons
+      document.querySelectorAll('.btn-delete-experience').forEach(btn => {
+        btn.addEventListener('click', function () {
+          if (confirm('Are you sure you want to remove this experience?')) {
+            this.closest('.experience-entry').remove();
+            reindexExperiences();
+          }
+        });
+      });
+    }
+
+    function reindexResponsibilities() {
+      document
+        .querySelectorAll('.responsibilities-container')
+        .forEach((container, expIndex) => {
+          container
+            .querySelectorAll('.responsibility-entry')
+            .forEach((entry, respIndex) => {
+              const input = entry.querySelector('input');
+              input.name = `experiences[${expIndex}][responsibilities][${respIndex}]`;
+            });
+        });
+    }
+
+    function reindexExperiences() {
+      document.querySelectorAll('.experience-entry').forEach((entry, index) => {
+        entry.querySelector('h4').textContent = `Experience #${index + 1}`;
+
+        entry.querySelectorAll('input').forEach(input => {
+          const nameParts = input.name.split('[');
+          if (nameParts.length > 1) {
+            const restOfName = nameParts.slice(1).join('[');
+            input.name = `experiences[${index}]${restOfName.substring(
+              restOfName.indexOf(']')
+            )}`;
+          }
+        });
+
+        const addRespBtn = entry.querySelector('.btn-add-responsibility');
+        if (addRespBtn) {
+          addRespBtn.setAttribute('data-index', index);
+        }
+
+        const respContainer = entry.querySelector(
+          '.responsibilities-container'
+        );
+        if (respContainer) {
+          respContainer.id = `responsibilities_${index}`;
+        }
+      });
+    }
+
+    // Projects section
+    const addProjectBtn = document.getElementById('addProject');
+    const projectsContainer = document.getElementById('projectsContainer');
+
+    addProjectBtn.addEventListener('click', function () {
+      const projectEntries = document.querySelectorAll('.project-entry');
+      const newIndex = projectEntries.length;
+
+      const newProject = document.createElement('div');
+      newProject.className = 'project-entry';
+      newProject.innerHTML = `
+        <h4>Project #${newIndex + 1}</h4>
+        <div class="form-group">
+          <label for="proj_name_${newIndex}">Name</label>
+          <input type="text" id="proj_name_${newIndex}" name="projects[${newIndex}][name]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="proj_startDate_${newIndex}">Start Date</label>
+          <input type="text" id="proj_startDate_${newIndex}" name="projects[${newIndex}][startDate]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="proj_endDate_${newIndex}">End Date</label>
+          <input type="text" id="proj_endDate_${newIndex}" name="projects[${newIndex}][endDate]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="proj_link_${newIndex}">Link (optional)</label>
+          <input type="text" id="proj_link_${newIndex}" name="projects[${newIndex}][link]">
+        </div>
+        
+        <div class="form-group">
+          <label>Description</label>
+          <div class="description-container" id="description_${newIndex}">
+            <div class="description-entry">
+              <input type="text" name="projects[${newIndex}][description][0]" required>
+              <button type="button" class="btn-delete-description">Remove</button>
+            </div>
+          </div>
+          <button type="button" class="btn-add-description" data-index="${newIndex}">Add Description</button>
+        </div>
+        
+        <div class="form-group">
+          <label for="proj_technologies_${newIndex}">Technologies (comma separated)</label>
+          <input type="text" id="proj_technologies_${newIndex}" name="projects[${newIndex}][technologies]" required>
+        </div>
+        
+        <button type="button" class="btn-delete btn-delete-project">Remove Project</button>
+      `;
+
+      projectsContainer.appendChild(newProject);
+      setupDescriptionListeners();
+      setupProjectListeners();
+    });
+
+    function setupDescriptionListeners() {
+      // Add description buttons
+      document.querySelectorAll('.btn-add-description').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const index = this.getAttribute('data-index');
+          const container = document.getElementById(`description_${index}`);
+          const descriptionEntries =
+            container.querySelectorAll('.description-entry');
+          const newDescIndex = descriptionEntries.length;
+
+          const newDescription = document.createElement('div');
+          newDescription.className = 'description-entry';
+          newDescription.innerHTML = `
+            <input type="text" name="projects[${index}][description][${newDescIndex}]" required>
+            <button type="button" class="btn-delete-description">Remove</button>
+          `;
+
+          container.appendChild(newDescription);
+          setupDeleteDescriptionListeners();
+        });
+      });
+
+      setupDeleteDescriptionListeners();
+    }
+
+    function setupDeleteDescriptionListeners() {
+      // Delete description buttons
+      document.querySelectorAll('.btn-delete-description').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const entry = this.parentElement;
+          if (
+            entry.parentElement.querySelectorAll('.description-entry').length >
+            1
+          ) {
+            entry.remove();
+            reindexDescriptions();
+          } else {
+            alert('You must have at least one description');
+          }
+        });
+      });
+    }
+
+    function setupProjectListeners() {
+      // Delete project buttons
+      document.querySelectorAll('.btn-delete-project').forEach(btn => {
+        btn.addEventListener('click', function () {
+          if (confirm('Are you sure you want to remove this project?')) {
+            this.closest('.project-entry').remove();
+            reindexProjects();
+          }
+        });
+      });
+    }
+
+    function reindexDescriptions() {
+      document
+        .querySelectorAll('.description-container')
+        .forEach((container, projIndex) => {
+          container
+            .querySelectorAll('.description-entry')
+            .forEach((entry, descIndex) => {
+              const input = entry.querySelector('input');
+              input.name = `projects[${projIndex}][description][${descIndex}]`;
+            });
+        });
+    }
+
+    function reindexProjects() {
+      document.querySelectorAll('.project-entry').forEach((entry, index) => {
+        entry.querySelector('h4').textContent = `Project #${index + 1}`;
+
+        entry.querySelectorAll('input').forEach(input => {
+          const nameParts = input.name.split('[');
+          if (nameParts.length > 1) {
+            const restOfName = nameParts.slice(1).join('[');
+            input.name = `projects[${index}]${restOfName.substring(
+              restOfName.indexOf(']')
+            )}`;
+          }
+        });
+
+        const addDescBtn = entry.querySelector('.btn-add-description');
+        if (addDescBtn) {
+          addDescBtn.setAttribute('data-index', index);
+        }
+
+        const descContainer = entry.querySelector('.description-container');
+        if (descContainer) {
+          descContainer.id = `description_${index}`;
+        }
+      });
+    }
+
+    // Education section
+    const addEducationBtn = document.getElementById('addEducation');
+    const educationContainer = document.getElementById('educationContainer');
+
+    addEducationBtn.addEventListener('click', function () {
+      const educationEntries = document.querySelectorAll('.education-entry');
+      const newIndex = educationEntries.length;
+
+      const newEducation = document.createElement('div');
+      newEducation.className = 'education-entry';
+      newEducation.innerHTML = `
+        <h4>Education #${newIndex + 1}</h4>
+        <div class="form-group">
+          <label for="edu_institution_${newIndex}">Institution</label>
+          <input type="text" id="edu_institution_${newIndex}" name="education[${newIndex}][institution]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="edu_degree_${newIndex}">Degree</label>
+          <input type="text" id="edu_degree_${newIndex}" name="education[${newIndex}][degree]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="edu_startDate_${newIndex}">Start Date</label>
+          <input type="text" id="edu_startDate_${newIndex}" name="education[${newIndex}][startDate]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="edu_endDate_${newIndex}">End Date</label>
+          <input type="text" id="edu_endDate_${newIndex}" name="education[${newIndex}][endDate]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="edu_gpa_${newIndex}">GPA (optional)</label>
+          <input type="text" id="edu_gpa_${newIndex}" name="education[${newIndex}][gpa]">
+        </div>
+        
+        <div class="form-group">
+          <label for="edu_logo_${newIndex}">Logo Path (optional)</label>
+          <input type="text" id="edu_logo_${newIndex}" name="education[${newIndex}][logo]">
+        </div>
+        
+        <button type="button" class="btn-delete btn-delete-education">Remove Education</button>
+      `;
+
+      educationContainer.appendChild(newEducation);
+      setupEducationListeners();
+    });
+
+    function setupEducationListeners() {
+      // Delete education buttons
+      document.querySelectorAll('.btn-delete-education').forEach(btn => {
+        btn.addEventListener('click', function () {
+          if (confirm('Are you sure you want to remove this education?')) {
+            this.closest('.education-entry').remove();
+            reindexEducation();
+          }
+        });
+      });
+    }
+
+    function reindexEducation() {
+      document.querySelectorAll('.education-entry').forEach((entry, index) => {
+        entry.querySelector('h4').textContent = `Education #${index + 1}`;
+
+        entry.querySelectorAll('input').forEach(input => {
+          const nameParts = input.name.split('[');
+          if (nameParts.length > 1) {
+            const restOfName = nameParts.slice(1).join('[');
+            input.name = `education[${index}]${restOfName.substring(
+              restOfName.indexOf(']')
+            )}`;
+          }
+        });
+      });
+    }
+
+    // Certifications section
+    const addCertificationBtn = document.getElementById('addCertification');
+    const certificationsContainer = document.getElementById(
+      'certificationsContainer'
+    );
+
+    addCertificationBtn.addEventListener('click', function () {
+      const certificationEntries = document.querySelectorAll(
+        '.certification-entry'
+      );
+      const newIndex = certificationEntries.length;
+
+      const newCertification = document.createElement('div');
+      newCertification.className = 'certification-entry';
+      newCertification.innerHTML = `
+        <h4>Certification #${newIndex + 1}</h4>
+        <div class="form-group">
+          <label for="cert_name_${newIndex}">Name</label>
+          <input type="text" id="cert_name_${newIndex}" name="certifications[${newIndex}][name]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="cert_organization_${newIndex}">Organization</label>
+          <input type="text" id="cert_organization_${newIndex}" name="certifications[${newIndex}][organization]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="cert_dateEarned_${newIndex}">Date Earned</label>
+          <input type="text" id="cert_dateEarned_${newIndex}" name="certifications[${newIndex}][dateEarned]" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="cert_validUntil_${newIndex}">Valid Until (optional)</label>
+          <input type="text" id="cert_validUntil_${newIndex}" name="certifications[${newIndex}][validUntil]">
+        </div>
+        
+        <div class="form-group">
+          <label for="cert_link_${newIndex}">Link (optional)</label>
+          <input type="text" id="cert_link_${newIndex}" name="certifications[${newIndex}][link]">
+        </div>
+        
+        <button type="button" class="btn-delete btn-delete-certification">Remove Certification</button>
+      `;
+
+      certificationsContainer.appendChild(newCertification);
+      setupCertificationListeners();
+    });
+
+    function setupCertificationListeners() {
+      // Delete certification buttons
+      document.querySelectorAll('.btn-delete-certification').forEach(btn => {
+        btn.addEventListener('click', function () {
+          if (confirm('Are you sure you want to remove this certification?')) {
+            this.closest('.certification-entry').remove();
+            reindexCertifications();
+          }
+        });
+      });
+    }
+
+    function reindexCertifications() {
+      document
+        .querySelectorAll('.certification-entry')
+        .forEach((entry, index) => {
+          entry.querySelector('h4').textContent = `Certification #${index + 1}`;
+
+          entry.querySelectorAll('input').forEach(input => {
+            const nameParts = input.name.split('[');
+            if (nameParts.length > 1) {
+              const restOfName = nameParts.slice(1).join('[');
+              input.name = `certifications[${index}]${restOfName.substring(
+                restOfName.indexOf(']')
+              )}`;
+            }
+          });
+        });
+    }
+
+    // Initialize all listeners
+    setupResponsibilityListeners();
+    setupExperienceListeners();
+    setupDescriptionListeners();
+    setupProjectListeners();
+    setupEducationListeners();
+    setupCertificationListeners();
+  });
+</script>

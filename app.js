@@ -17,7 +17,7 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// connect to DB
+// Connect to MongoDB
 connectDB();
 
 // parse req with URL-encoded payloads
@@ -26,10 +26,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
 
-// creating session cookie
+// Session configuration with MongoDB store
 app.use(
   session({
-    secret: process.env.SESSION_SECRET, // Encryption key
+    secret: process.env.SESSION_SECRET || 'test-secret-key', // Encryption key
     saveUninitialized: false, // session saving behavior
     resave: false,
     store: MongoStore.create({
