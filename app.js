@@ -43,7 +43,7 @@ app.use(
 );
 
 app.use(flash());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Templating engine
 app.use(expressLayout);
@@ -59,8 +59,6 @@ app.use((req, res, next) => {
 
 app.use('/', MainRouter);
 app.use('/', AdminRouter);
-
-app.use(express.static(path.join(__dirname + '../public')));
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
