@@ -94,18 +94,3 @@ router.get('/success', (req, res) => {
 });
 
 module.exports = router;
-
-// function insertPostData() {
-// 	Post.insertMany([
-// 		{
-// 			title: "Building a blog 1",
-// 			body: "This is body text 3."
-// 		},
-// 		{
-// 			title: "Building a blog 2",
-// 			body: "This is body text 4."
-// 		}
-// 	])
-// }
-
-// insertPostData();
