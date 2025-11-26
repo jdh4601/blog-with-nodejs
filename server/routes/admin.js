@@ -13,11 +13,22 @@ const resumeData = require('../config/resume-data.js');
 const adminLayout = '../views/layouts/admin';
 const jwtSecret = process.env.JWT_SECRET;
 
-// Get /admin - check login (modified for testing)
+// Get /admin - check login
 const authMiddleware = (req, res, next) => {
-  // For testing purposes, always authorize
-  console.log('Auth middleware bypassed for testing');
-  next();
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(401).redirect('/admin');
+  }
+
+  try {
+    const decoded = jwt.verify(token, jwtSecret);
+    req.userId = decoded.userId;
+    next();
+  } catch (err) {
+    console.error('JWT verification failed:', err);
+    return res.status(401).redirect('/admin');
+  }
 };
 
 // Get /admin - login page
@@ -174,25 +185,8 @@ router.put('/edit-post/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// router.post('/admin', async (req, res) => {
-// 	try {
-
-// 		const { username, password } = req.body;
-// 		console.log(req.body);
-
-// 		if (req.body.username === 'admin' && req.body.password === 'password') {
-// 			res.send('You are logged in.')
-// 		} else {
-// 			res.send('Wrong user.')
-// 		}
-
-// 	} catch (err) {
-// 		console.error(err);
-// 	}
-// });
-
 // POST /register
-router.post('/resgister', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     const { username, password } = req.body;
 

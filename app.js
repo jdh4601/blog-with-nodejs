@@ -60,8 +60,6 @@ app.use((req, res, next) => {
 app.use('/', MainRouter);
 app.use('/', AdminRouter);
 
-app.use(express.static(path.join(__dirname + '../public')));
-
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
